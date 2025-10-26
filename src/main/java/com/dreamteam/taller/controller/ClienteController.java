@@ -2,6 +2,7 @@ package com.dreamteam.taller.controller;
 
 import com.dreamteam.taller.model.Cliente;
 import com.dreamteam.taller.repository.ClienteRepository;
+import com.dreamteam.taller.service.ClienteService;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,16 +12,16 @@ import java.util.List;
 @RequestMapping("/")
 public class ClienteController {
 
-    private final ClienteRepository clienteRepository;
+    private final ClienteService clienteService;
 
-    public ClienteController(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
     }
 
     // Mostrar lista de clientes y formulario vacío para crear uno nuevo
     @GetMapping
     public String listarClientes(Model model) {
-        List<Cliente> clientes = clienteRepository.findAll();
+        List<Cliente> clientes = clienteService.listarClientes();
         model.addAttribute("clientes", clientes);
         model.addAttribute("cliente", new Cliente());
         return "index";
@@ -29,14 +30,14 @@ public class ClienteController {
     // Guardar nuevo cliente (recibe datos del formulario)
     @PostMapping("/")
     public String guardarCliente(@ModelAttribute Cliente usuarioNuevo) {
-        clienteRepository.save(usuarioNuevo);
+        clienteService.guardarCliente(usuarioNuevo);
         return "redirect:/";
     }
 
     // Mostrar formulario para editar cliente
     @GetMapping("/editar/{numrun}")
     public String mostrarEditar(@PathVariable Long numrun, Model model) {
-        Cliente cliente = clienteRepository.findById(numrun)
+        Cliente cliente = clienteService.buscarPorId(numrun)
                 .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + numrun));
         model.addAttribute("clienteEditar", cliente);
         return "editar";  // plantilla editar.html
@@ -45,15 +46,15 @@ public class ClienteController {
     // Recibir formulario edición
     @PostMapping("/editar/{numrun}")
     public String editarCliente(@PathVariable Long numrun, @ModelAttribute("clienteEditar") Cliente clienteEditar) {
-        clienteEditar.setNumrun(numrun); // asegura que no se cambie el ID
-        clienteRepository.save(clienteEditar);
+        clienteEditar.setNumrun(numrun);
+        clienteService.guardarCliente(clienteEditar);
         return "redirect:/";
     }
 
     // Borrar cliente
     @PostMapping("/borrar/{numrun}")
     public String borrarCliente(@PathVariable Long numrun) {
-        clienteRepository.deleteById(numrun);
+        clienteService.eliminarCliente(numrun);
         return "redirect:/";
     }
 }
