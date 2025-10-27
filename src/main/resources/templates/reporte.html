@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: layout(~{::contenido}, 'Reporte Mensual de Avances de los Clientes', 'fragments/reporteHead :: reporteHead')}"
+      th:replace="fragments/layout :: layout(~{::contenido}, 'Reporte Mensual de Avances de los Clientes', ~{fragments/reporte1_styles :: reporteHead})">
+<!--
+    Corrección clave:
+    1. Ruta completa al layout: 'fragments/layout'.
+    2. Referencia correcta al fragmento de estilos (tercer argumento): ~{fragments/reporte1_styles :: reporteHead}
+-->
+<body>
 
 <div th:fragment="contenido">
-    <main>
-        <!-- Mensajes -->
-        <div th:if="${mensaje}" role="alert">
-            <strong>Proceso Exitoso:</strong>
-            <p th:text="${mensaje}"></p>
-        </div>
-        <div th:if="${error}" role="alert">
-            <strong>Error en Ejecución:</strong>
-            <p th:text="${error}"></p>
-        </div>
+    <!-- Mensajes -->
+    <div th:if="${mensaje}" class="alert-success-custom" role="alert">
+        <strong>Proceso Exitoso:</strong>
+        <p th:text="${mensaje}"></p>
+    </div>
+    <div th:if="${error}" class="alert-danger-custom" role="alert">
+        <strong>Error en Ejecución:</strong>
+        <p th:text="${error}"></p>
+    </div>
 
-        <!-- Botón de ejecución -->
-        <form th:action="@{/reporte1/generar}" method="post">
-            <button type="submit">Generar y Recargar Reporte (Ejecutar PL/SQL)</button>
-        </form>
+    <!-- Botón de ejecución -->
+    <form th:action="@{/reporte1/generar}" method="post">
+        <button type="submit" class="btn-reporte">Generar y Recargar Reporte (Ejecutar PL/SQL)</button>
+    </form>
 
-        <!-- Resultados -->
-        <h2>Resultados del Reporte</h2>
-        <p>Filas encontradas: <strong th:text="${filasTotales}">0</strong></p>
+    <!-- Resultados -->
+    <h2>Resultados del Reporte</h2>
+    <p>Filas encontradas: <strong th:text="${filasTotales}">0</strong></p>
 
-        <!-- Tabla -->
-        <div th:if="${reportes != null and !reportes.isEmpty()}">
-            <table>
-                <thead>
-                <tr>
-                    <th>NUMRUN</th>
-                    <th>MES/AÑO</th>
-                    <th>TIPO TRANSACCIÓN</th>
-                    <th>MONTO TOTAL ($)</th>
-                    <th>APORTE SBIF ($)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="r : ${reportes}">
-                    <td th:text="${r.id.numrun}"></td>
-                    <td th:text="${r.id.fechaTransaccion}"></td>
-                    <td th:text="${r.id.tipoTransaccion}"></td>
-                    <td th:text="${#numbers.formatDecimal(r.montoTotalTransacciones, 0, 'POINT', 0, 'COMMA')}"></td>
-                    <td th:text="${#numbers.formatDecimal(r.aporteTotalSbif, 0, 'POINT', 0, 'COMMA')}"></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Tabla -->
+    <div th:if="${reportes != null and !reportes.isEmpty()}" class="table-responsive">
+        <table>
+            <thead>
+            <tr>
+                <th>NUMRUN</th>
+                <th>MES/AÑO</th>
+                <th>TIPO TRANSACCIÓN</th>
+                <th>MONTO TOTAL ($)</th>
+                <th>APORTE SBIF ($)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="r : ${reportes}">
+                <td th:text="${r.id.numrun}"></td>
+                <td th:text="${r.id.fechaTransaccion}"></td>
+                <td th:text="${r.id.tipoTransaccion}"></td>
+                <!-- Uso de las utilidades de Thymeleaf para formatear números -->
+                <td th:text="${#numbers.formatDecimal(r.montoTotalTransacciones, 0, 'POINT', 0, 'COMMA')}">1.234.567</td>
+                <td th:text="${#numbers.formatDecimal(r.aporteTotalSbif, 0, 'POINT', 0, 'COMMA')}">12.345</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <div th:if="${reportes == null or reportes.isEmpty()}">
-            <p>No hay datos disponibles. Haga clic en el botón para ejecutar el procedimiento y cargar el reporte.</p>
-        </div>
-    </main>
+    <div th:if="${reportes == null or reportes.isEmpty()}">
+        <p>No hay datos disponibles. Haga clic en el botón para ejecutar el procedimiento y cargar el reporte.</p>
+    </div>
 </div>
+
+</body>
+</html>
