@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/resumenes")
 public class ResumenAporteSBIFController {
 
     // Inyección de dependencias
@@ -53,8 +53,9 @@ public class ResumenAporteSBIFController {
     }
 
     // Borrar resumen
-    @PostMapping("/borrar/{mes_anno}/{tipo_transaccion")
-    public String borrarResumenAporte(@PathVariable String mes_anno, @PathVariable String tipo_transaccion){
+    @PostMapping("/borrar/{mes_anno}/{tipo_transaccion}")
+    public String borrarResumenAporte(@PathVariable String mes_anno,
+                                      @PathVariable String tipo_transaccion){
         resApSBIFService.eliminarResumenAporte(mes_anno, tipo_transaccion);
         return "redirect:/";
     }

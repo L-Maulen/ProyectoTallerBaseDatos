@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -24,7 +24,7 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.listarClientes();
         model.addAttribute("clientes", clientes);
         model.addAttribute("cliente", new Cliente());
-        return "index";
+        return "clientes";
     }
 
     // Guardar nuevo cliente (recibe datos del formulario)

@@ -18,6 +18,6 @@ public class ResumenAporteSBIF {
     @Column(name = "MONTO_TOTAL_TRANSACCIONES", nullable = false)
     private int monto_total_transacciones;
 
-    @Column(name = "APORTE_TOTAL_SBIF", nullable = false)
+    @Column(name = "APORTE_TOTAL_ABIF", nullable = false)
     private int aporte_total_sbif;
 }
