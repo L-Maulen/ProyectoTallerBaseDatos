@@ -2,12 +2,14 @@ package com.dreamteam.taller.service;
 
 import com.dreamteam.taller.model.Cliente;
 import com.dreamteam.taller.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ClienteService {
     private final ClienteRepository clienteRepository;
 
