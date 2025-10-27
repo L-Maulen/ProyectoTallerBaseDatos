@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: layout(~{::contenido}, 'Resumen de Aportes SBIF')}">
-<body>
+      th:replace="~{fragments/layout :: layout(~{::contenido}, 'Resumen de Aportes SBIF', null)}">
 
 <div th:fragment="contenido">
     <h1>Resumen de Aportes SBIF</h1>
@@ -31,6 +30,4 @@
         </tbody>
     </table>
 </div>
-
-</body>
 </html>

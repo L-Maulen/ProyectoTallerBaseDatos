@@ -8,12 +8,11 @@
           rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
           crossorigin="anonymous">
+    <!-- Navbar común -->
+    <div th:replace="fragments :: navbar"></div>
 
     <!-- Fragmento extra opcional -->
 <body class="container">
-
-<!-- Navbar común -->
-<div th:replace="fragments :: navbar"></div>
 
 <!-- Contenido específico de cada página -->
 <main class="container mt-4" th:replace="${contenido}"></main>
