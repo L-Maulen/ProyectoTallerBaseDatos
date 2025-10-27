@@ -1,0 +1,24 @@
+<div th:replace="~{fragments/layout :: layout(
+        contenido=~{::section},
+        titulo='Listado de Errores',
+        extraHead='' )}">
+    <section>
+        <h2>Errores del Proceso</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>SEC_ERROR</th>
+                <th>RUTINA_ERROR</th>
+                <th>MENSAJE_ERROR</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="error : ${errores}">
+                <td th:text="${error.secError}"></td>
+                <td th:text="${error.rutinaError}"></td>
+                <td th:text="${error.mensajeError}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>

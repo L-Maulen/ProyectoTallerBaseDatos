@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Navbar -->
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Drink Team App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/error/errorProcesos">Errores</a></li>
+                <li class="nav-item"><a class="nav-link" href="/reporte1">Reporte 1</a></li>
+                <li class="nav-item"><a class="nav-link" href="/reporte2">Reporte 2</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Footer -->
+<footer th:fragment="footer" style="background-color:#ddd; text-align:center; padding:10px; margin-top:20px;">
+    <p>&copy; 2025 DreamTeam | Taller Base de Datos — Integración Spring Boot y Oracle PL/SQL.</p>
+</footer>
+</html>

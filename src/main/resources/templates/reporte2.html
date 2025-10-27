@@ -1,44 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Resumen de Aportes SBIF</title>
-</head>
-<body class="container">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::contenido}, 'Resumen de Aportes SBIF')}">
+<body>
 
-<h1>Resumen de Aportes SBIF</h1>
+<div th:fragment="contenido">
+    <h1>Resumen de Aportes SBIF</h1>
 
-<h2>Lista de Resúmenes</h2>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Mes/Año</th>
-        <th>Tipo de Transacción</th>
-        <th>Monto Total Transacciones</th>
-        <th>Aporte Total SBIF</th>
-        <th>Acciones</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- CORRECCIÓN: La variable debe ser 'resumenes', como se pasa desde el controlador -->
-    <tr th:each="resumen : ${resumenes}">
-        <!-- Accedemos a los campos de la clave compuesta a través de 'id' -->
-        <td th:text="${resumen.id.mes_anno}"></td>
-        <td th:text="${resumen.id.tipo_transaccion}"></td>
-        
-        <!-- Usamos los nombres de campo correctos de la entidad -->
-        <td th:text="${resumen.monto_total_transacciones}"></td>
-        <td th:text="${resumen.aporte_total_sbif}"></td>
-        
-        <td>
-            <!-- Aquí puedes agregar botones de Editar y Borrar si lo necesitas en el futuro -->
-            <a th:href="@{'/reporte2/editar/' + ${resumen.id.mes_anno} + '/' + ${resumen.id.tipo_transaccion}}" class="btn btn-warning btn-sm">Editar</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
+    <h2>Lista de Resúmenes</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Mes/Año</th>
+            <th>Tipo de Transacción</th>
+            <th>Monto Total Transacciones</th>
+            <th>Aporte Total SBIF</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="resumen : ${resumenes}">
+            <td th:text="${resumen.id.mes_anno}"></td>
+            <td th:text="${resumen.id.tipo_transaccion}"></td>
+            <td th:text="${resumen.monto_total_transacciones}"></td>
+            <td th:text="${resumen.aporte_total_sbif}"></td>
+            <td>
+                <a th:href="@{'/reporte2/editar/' + ${resumen.id.mes_anno} + '/' + ${resumen.id.tipo_transaccion}}"
+                   class="btn btn-warning btn-sm">Editar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
