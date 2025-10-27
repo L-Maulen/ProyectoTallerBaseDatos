@@ -1,0 +1,152 @@
+/* ======== ESTILOS GENERALES ======== */
+body {
+    font-family: "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* ======== HEADER ======== */
+.header {
+    background: linear-gradient(135deg, #004aad, #007bff);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.header p {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+}
+
+/* ======== MAIN CONTAINER ======== */
+.main-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ======== ALERTAS ======== */
+.alert {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background-color: #e6f7e6;
+    border: 1px solid #28a745;
+    color: #19692c;
+}
+
+.alert-error {
+    background-color: #fdeaea;
+    border: 1px solid #dc3545;
+    color: #721c24;
+}
+
+/* ======== BOTÓN ======== */
+.btn-primary {
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+/* ======== FORMULARIO ======== */
+.form-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+/* ======== SECCIONES ======== */
+.section-title {
+    border-left: 4px solid #007bff;
+    padding-left: 0.5rem;
+    margin-top: 2rem;
+    color: #004aad;
+}
+
+/* ======== TABLA ======== */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.styled-table thead {
+    background: #007bff;
+    color: white;
+}
+
+.styled-table th, .styled-table td {
+    padding: 0.9rem;
+    text-align: center;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9fbfc;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #eef3f8;
+}
+
+/* ======== SIN DATOS ======== */
+.no-data {
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    color: #555;
+}
+
+/* ======== FOOTER ======== */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    margin-top: 3rem;
+}
+
+/* ======== RESPONSIVO ======== */
+@media (max-width: 768px) {
+    .main-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .styled-table th,
+    .styled-table td {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
