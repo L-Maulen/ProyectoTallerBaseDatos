@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/resumenes")
+@RequestMapping("/reporte2")
 public class ResumenAporteSBIFController {
 
     // Inyección de dependencias
@@ -25,7 +25,7 @@ public class ResumenAporteSBIFController {
         List<ResumenAporteSBIF> resumenes = resApSBIFService.listarResumenAportes();
         model.addAttribute("resumenes", resumenes);
         model.addAttribute("resumenAporteSBIF", new ResumenAporteSBIF());
-        return "procedimiento2";
+        return "reporte2";
     }
 
     @PostMapping("/")
