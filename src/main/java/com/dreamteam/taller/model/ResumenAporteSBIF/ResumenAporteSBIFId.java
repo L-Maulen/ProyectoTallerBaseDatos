@@ -1,5 +1,6 @@
 package com.dreamteam.taller.model.ResumenAporteSBIF;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,15 +20,18 @@ public class ResumenAporteSBIFId implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private String mes_anno;
-    private String tipo_transaccion;
+    @Column(name = "MES_ANNO", nullable = false)
+    private String mesAnno;
 
-    public void setMes_anno(String mes_anno) {
-        this.mes_anno = mes_anno;
+    @Column(name = "TIPO_TRANSACCION", nullable = false)
+    private String tipoTransaccion;
+
+    public void setMes_anno(String mesAnno) {
+        this.mesAnno = mesAnno;
     }
 
-    public void setTipo_transaccion(String tipo_transaccion) {
-        this.tipo_transaccion = tipo_transaccion;
+    public void setTipo_transaccion(String tipoTransaccion) {
+        this.tipoTransaccion = tipoTransaccion;
     }
 
     @Override
@@ -35,12 +39,12 @@ public class ResumenAporteSBIFId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResumenAporteSBIFId that = (ResumenAporteSBIFId) o;
-        return Objects.equals(mes_anno, that.mes_anno) &&
-                Objects.equals(tipo_transaccion, that.tipo_transaccion);
+        return Objects.equals(mesAnno, that.mesAnno) &&
+                Objects.equals(tipoTransaccion, that.tipoTransaccion);
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(mes_anno, tipo_transaccion);
+        return Objects.hash(mesAnno, tipoTransaccion);
     }
 }

@@ -5,7 +5,7 @@
 <div th:fragment="contenido">
     <h1>Resumen de Aportes SBIF</h1>
 
-    <h2>Lista de Resúmenes</h2>
+    <h2 class="mt-4">Lista de Resúmenes</h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -18,11 +18,10 @@
         </thead>
         <tbody>
         <tr th:each="resumen : ${resumenes}">
-            <td th:text="${resumen.id.mes_anno}"></td>
-            <td th:text="${resumen.id.tipo_transaccion}"></td>
-            <td th:text="${resumen.monto_total_transacciones}"></td>
-            <td th:text="${resumen.aporte_total_sbif}"></td>
-
+            <td th:text="${resumen.id.mesAnno}"></td>
+            <td th:text="${resumen.id.tipoTransaccion}"></td>
+            <td th:text="${resumen.montoTotalTransacciones}"></td>
+            <td th:text="${resumen.aporteTotalAbif}"></td>
         </tr>
         </tbody>
     </table>

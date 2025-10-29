@@ -16,8 +16,8 @@ public class ResumenAporteSBIF {
     private ResumenAporteSBIFId id;
 
     @Column(name = "MONTO_TOTAL_TRANSACCIONES", nullable = false)
-    private int monto_total_transacciones;
+    private int montoTotalTransacciones;
 
     @Column(name = "APORTE_TOTAL_ABIF", nullable = false)
-    private int aporte_total_sbif;
+    private int aporteTotalAbif;
 }

@@ -22,9 +22,13 @@ public class ResumenAporteSBIFController {
 
     @GetMapping
     public String listarResumenes(Model model) {
+        // Ejecuta el procedimiento antes de listar
+        resApSBIFService.ejecutarProcedimientoResumenAporteSBIF();
+
+        // Obtiene la lista de resumenes y los agrega al modelo
         List<ResumenAporteSBIF> resumenes = resApSBIFService.listarResumenAportes();
         model.addAttribute("resumenes", resumenes);
-        model.addAttribute("resumenAporteSBIF", new ResumenAporteSBIF());
+        //model.addAttribute("resumenAporteSBIF", new ResumenAporteSBIF());
         return "reporte2";
     }
 

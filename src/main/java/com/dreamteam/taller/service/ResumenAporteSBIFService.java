@@ -3,6 +3,8 @@ package com.dreamteam.taller.service;
 import com.dreamteam.taller.model.ResumenAporteSBIF.ResumenAporteSBIF;
 import com.dreamteam.taller.model.ResumenAporteSBIF.ResumenAporteSBIFId;
 import com.dreamteam.taller.repository.ResumenAporteSBIFRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,16 @@ import java.util.Optional;
 @Transactional
 public class ResumenAporteSBIFService {
 
-    @Autowired
     private final ResumenAporteSBIFRepository resApSBIFRepository;
 
+    @Autowired
     public ResumenAporteSBIFService(ResumenAporteSBIFRepository ResApSBIFRepository){
         this.resApSBIFRepository = ResApSBIFRepository;
+    }
+
+    // Ejecutar procedimiento almacenado
+    public void ejecutarProcedimientoResumenAporteSBIF() {
+        resApSBIFRepository.ejecutarProcedimientoResumenAporteSBIF();
     }
 
     // Obtener todos los aportes
@@ -26,24 +33,24 @@ public class ResumenAporteSBIFService {
         return resApSBIFRepository.findAll();
     }
 
-    // Guardar o actualizar cliente
+    // Guardar/actualizar
     public ResumenAporteSBIF guardarResumenAporte(ResumenAporteSBIF resumenAporteSBIF) {
         return resApSBIFRepository.save(resumenAporteSBIF);
     }
 
-    // Buscar resumen por ID
+    // Buscar por ID
     public Optional<ResumenAporteSBIF> listarResumenAporte(String mes_anno, String tipo_transaccion) {
         ResumenAporteSBIFId id = new ResumenAporteSBIFId(mes_anno, tipo_transaccion);
         return resApSBIFRepository.findById(id);
     }
 
-    // Eliminar resumen por ID
+    // Borrar
     public void eliminarResumenAporte(String mes_anno, String tipo_transaccion) {
         ResumenAporteSBIFId id = new ResumenAporteSBIFId(mes_anno, tipo_transaccion);
         resApSBIFRepository.deleteById(id);
     }
 
-    // Verificar si existe el resumen del aporte
+    // Existe
     public boolean existePorId(String mes_anno, String tipo_transaccion) {
         ResumenAporteSBIFId id = new ResumenAporteSBIFId(mes_anno, tipo_transaccion);
         return resApSBIFRepository.existsById(id);
