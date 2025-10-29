@@ -28,7 +28,7 @@ public class ReporteMensualAvances {
     private int montoTotalTransacciones;
 
     @Column(name = "APORTE_TOTAL_SBIF", nullable = true)
-    private int aporteTotalAbif;
+    private int aporteTotalSbif;
 
     // Métodos utilitarios para acceder a los campos de la clave fácilmente
     public Long getNumrun() {
